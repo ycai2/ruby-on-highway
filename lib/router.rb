@@ -64,7 +64,7 @@ class Router
     if route.nil?
       res.status = 404
     else
-      route.run
+      route.run(req, res)
     end
   end
 end
