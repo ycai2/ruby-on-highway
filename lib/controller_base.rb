@@ -1,6 +1,7 @@
 require 'active_support'
 require 'active_support/core_ext'
 require 'erb'
+require 'byebug'
 require_relative './session'
 
 class ControllerBase
@@ -49,7 +50,7 @@ class ControllerBase
   def render(template_name)
     controller_name = self.class.name.underscore
     body = File.read("views/#{controller_name}/#{template_name}.html.erb")
-    render_content(body, 'text/html')
+    render_content(ERB.new(body).result(binding), 'text/html')
   end
 
   # method exposing a `Session` object
