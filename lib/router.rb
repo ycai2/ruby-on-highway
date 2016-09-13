@@ -17,7 +17,12 @@ class Route
   # use pattern to pull out route params (save for later?)
   # instantiate controller and call controller action
   def run(req, res)
-    controller = @controller_class.new(req, res, {})
+    match_data = @pattern.match(req.path)
+    params = {}
+    match_data.names.each do |k|
+      params[k] = match_data[k]
+    end
+    controller = @controller_class.new(req, res, params)
     controller.invoke_action(@action_name)
   end
 end
