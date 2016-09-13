@@ -10,7 +10,7 @@ class ControllerBase
   def initialize(req, res, params = {})
     @req = req
     @res = res
-    @params = params
+    @params = req.params.merge(params)
   end
 
   # Helper method to alias @already_built_response
@@ -25,7 +25,7 @@ class ControllerBase
     else
       res.status = 302
       res.header['location'] = url
-      @session.store_session(res)
+      session.store_session(res)
       @already_built_response = true
     end
   end
@@ -38,7 +38,7 @@ class ControllerBase
       raise 'Double render error'
     else
       res['Content-Type'] = content_type
-      @session.store_session(res)
+      session.store_session(res)
       res.write(content)
       @already_built_response = true
     end
@@ -59,7 +59,6 @@ class ControllerBase
 
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
-    debugger
     send(name)
     unless already_built_response?
       render name
