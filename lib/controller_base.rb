@@ -2,6 +2,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'erb'
 require 'byebug'
+require_relative './flash'
 require_relative './session'
 
 class ControllerBase
@@ -27,6 +28,7 @@ class ControllerBase
       res.status = 302
       res.header['location'] = url
       session.store_session(res)
+      flash.store_flash(res)
       @already_built_response = true
     end
   end
@@ -40,6 +42,7 @@ class ControllerBase
     else
       res['Content-Type'] = content_type
       session.store_session(res)
+      flash.store_flash_now(res)
       res.write(content)
       @already_built_response = true
     end
