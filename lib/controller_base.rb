@@ -42,7 +42,7 @@ class ControllerBase
     else
       res['Content-Type'] = content_type
       session.store_session(res)
-      flash.store_flash_now(res)
+      flash.store_flash(res)
       res.write(content)
       @already_built_response = true
     end
