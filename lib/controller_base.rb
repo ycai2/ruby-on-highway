@@ -58,6 +58,10 @@ class ControllerBase
     @session ||= Session.new(@req)
   end
 
+  def flash
+    @flash ||= Flash.new(@req)
+  end
+
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
     send(name)
