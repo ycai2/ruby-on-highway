@@ -10,7 +10,7 @@ ruby lib/run.rb
 ```
 
 ## A List of features & functionalities
-All features are implemented using only vanilla Ruby
+### All features are implemented using only vanilla Ruby
 1. Runs Rack server
 2. Renders templates with ERB (Embedded Ruby)
 3. Stores sessions in cookies and HTTP header
