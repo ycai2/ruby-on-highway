@@ -3,7 +3,9 @@ class Static
     ".jpg" => 'image/jpeg',
     ".txt" => 'text/plain',
     ".zip" => 'application/zip',
-    ".png" => 'image/png'
+    ".png" => 'image/png',
+    ".css" => 'text/css',
+    ".js" => 'application/js'
   }
 
   def initialize(app)
