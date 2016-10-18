@@ -11,6 +11,11 @@ class Dog
     @dogs ||= []
   end
 
+
+  def self.find(id)
+    @dogs[id]
+  end
+
   def initialize(params = {})
     params ||= {}
     @name, @owner = params["name"], params["owner"]
@@ -43,6 +48,7 @@ class Dog
   def inspect
     { name: name, owner: owner }.inspect
   end
+
 end
 
 class DogsController < ControllerBase
@@ -66,11 +72,6 @@ class DogsController < ControllerBase
     @dog = Dog.new
     render :new
   end
-
-  def show
-    @dog = Dog.find(params[:id])
-    render :show
-  end
 end
 
 class ExceptionController < ControllerBase
@@ -92,7 +93,6 @@ router.draw do
   get Regexp.new("^/dogs$"), DogsController, :index
   get Regexp.new("^/$"), DogsController, :index
   get Regexp.new("^/dogs/new$"), DogsController, :new
-  get Regexp.new("^/dogs/(?<id>\\d+)$"), DogsController, :show
   post Regexp.new("^/dogs$"), DogsController, :create
   get Regexp.new("^/raise$"), ExceptionController, :critical
   get Regexp.new("^/nil$"), ExceptionController, :dreaded_nil
