@@ -2,6 +2,7 @@ require 'rack'
 require_relative '../lib/controller_base'
 require_relative '../lib/router'
 require_relative '../lib/show_exceptions'
+require_relative '../lib/static'
 
 class Dog
   attr_reader :name, :owner
@@ -67,9 +68,9 @@ class DogsController < ControllerBase
   end
 end
 
-class MyController < ControllerBase
+class ExceptionController < ControllerBase
   def critical
-    raise "Critical error. Abort, abort, abort"
+    raise "Error raised! Abort, abort, abort"
   end
 
   def dreaded_nil
@@ -84,13 +85,12 @@ end
 router = Router.new
 router.draw do
   get Regexp.new("^/dogs$"), DogsController, :index
+  get Regexp.new("^/$"), DogsController, :index
   get Regexp.new("^/dogs/new$"), DogsController, :new
   get Regexp.new("^/dogs/(?<id>\\d+)$"), DogsController, :show
   post Regexp.new("^/dogs$"), DogsController, :create
-  get Regexp.new("^/raise$"), MyController, :critical
-  get Regexp.new("^/nil$"), MyController, :dreaded_nil
-  get Regexp.new("^/okay$"), MyController, :okay
-  get Regexp.new("^/$"), MyController, :okay
+  get Regexp.new("^/raise$"), ExceptionController, :critical
+  get Regexp.new("^/nil$"), ExceptionController, :dreaded_nil
 end
 
 app = Proc.new do |env|
@@ -102,6 +102,7 @@ end
 
 app = Rack::Builder.new do
   use ShowExceptions
+  use Static
   run app
 end.to_app
 
