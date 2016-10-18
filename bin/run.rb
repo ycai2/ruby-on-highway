@@ -66,6 +66,11 @@ class DogsController < ControllerBase
     @dog = Dog.new
     render :new
   end
+
+  def show
+    @dog = Dog.find(params[:id])
+    render :show
+  end
 end
 
 class ExceptionController < ControllerBase
