@@ -1,4 +1,4 @@
-require_relative 'db_connection'
+require 'pg'
 require 'active_support/inflector'
 
 class SQLObject

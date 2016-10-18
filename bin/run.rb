@@ -5,6 +5,7 @@ require_relative '../lib/show_exceptions'
 require_relative '../lib/static'
 require_relative '../bin/dog'
 require_relative '../bin/dogs_controller'
+require 'pg'
 
 class ExceptionController < ControllerBase
   def critical
