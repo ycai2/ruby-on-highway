@@ -1,4 +1,4 @@
-Ruby on Street
+Ruby on Highway
 ==
 
 A vanilla Ruby project inspired by Ruby on Rails to demonstrate understanding of Ruby, middleware, and Rails
@@ -20,11 +20,11 @@ All features are implemented using only vanilla Ruby
 7. Serves static assets from public folder
 
 ## Test Routes
-Index page
+Root
 <br>
 [localhost:3000](http://localhost:3000/)
 
-Index page
+Index
 ```
 /
 /dogs         
