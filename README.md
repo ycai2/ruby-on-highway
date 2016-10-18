@@ -1,7 +1,7 @@
 Ruby on Highway
 ==
 
-A vanilla Ruby project inspired by Ruby on Rails to demonstrate understanding of Ruby, middleware, and Rails
+A vanilla Ruby framework to connect controller and views
 
 ## Usage
 Clone the repo

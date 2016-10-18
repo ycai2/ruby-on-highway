@@ -48,7 +48,7 @@ class ControllerBase
   # use ERB and binding to evaluate templates
   def render(template_name)
     controller_name = self.class.name.underscore
-    body = File.read("..views/#{controller_name}/#{template_name}.html.erb")
+    body = File.read("views/#{controller_name}/#{template_name}.html.erb")
     render_content(ERB.new(body).result(binding), 'text/html')
   end
 
