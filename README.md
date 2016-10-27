@@ -6,7 +6,7 @@ A vanilla Ruby framework to connect controller and views
 ## Usage
 Clone the repo
 ```
-ruby lib/run.rb
+ruby bin/run.rb
 ```
 
 ## A List of features & functionalities
